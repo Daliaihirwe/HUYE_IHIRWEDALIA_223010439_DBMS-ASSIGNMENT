@@ -1,0 +1,101 @@
+mysql> USE RUHANDE;
+Database changed
+mysql> CREATE TABLE NGOMA(
+    -> id INT(16) NOT NULL,
+    -> F_NAME VARCHAR(50) NOT NULL,
+    -> L_NAME VARCHAR(50) NOT NULL,
+    -> GENDER VARCHAR(255) NOT NULL,
+    -> PROVINCE VARCHAR(50) NOT NULL,
+    -> DISTRICT VARCHAR(50) NOT NULL,
+    -> SECTOR VARCHAR(50) NOT NULL,
+    ->
+    -> CELL VARCHAR(50) NOT NULL,
+    -> EMAIL VARCHAR(255) NOT NULL,
+    -> PHONE INT(10) NOT NULL);
+Query OK, 0 rows affected, 2 warnings (0.03 sec)
+
+mysql> DESCRIBE NGOMA;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| id       | int          | NO   |     | NULL    |       |
+| F_NAME   | varchar(50)  | NO   |     | NULL    |       |
+| L_NAME   | varchar(50)  | NO   |     | NULL    |       |
+| GENDER   | varchar(255) | NO   |     | NULL    |       |
+| PROVINCE | varchar(50)  | NO   |     | NULL    |       |
+| DISTRICT | varchar(50)  | NO   |     | NULL    |       |
+| SECTOR   | varchar(50)  | NO   |     | NULL    |       |
+| CELL     | varchar(50)  | NO   |     | NULL    |       |
+| EMAIL    | varchar(255) | NO   |     | NULL    |       |
+| PHONE    | int          | NO   |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+10 rows in set (0.02 sec)
+
+mysql> INSERT INTO NGOMA (id, F_NAME, L_NAME, GENDER, PROVINCE, DISTRICT, SECTOR, CELL, EMAIL, PHONE) VALUES
+    -> (1, 'Alice', 'Mukamana', 'Female', 'Northern', 'Rulindo', 'Nyarutovu', 'Munyinya', 'alice.mukamana@example.com', 788123456),
+    -> (2, 'Jean', 'Nyampinga', 'Male', 'Eastern', 'Kayonza', 'Kibali', 'Kibungo', 'jean.nyampinga@example.com', 788234567),
+    -> (3, 'Claudine', 'Habimana', 'Female', 'Western', 'Rubavu', 'Gisenyi', 'Nyundo', 'claudine.habimana@example.com', 788345678),
+    -> (4, 'Eric', 'Niyonzima', 'Male', 'Southern', 'Huye', 'Tumba', 'Rukira', 'eric.niyonzima@example.com', 788456789),
+    -> (5, 'Fatima', 'Munyaneza', 'Female', 'Kigali', 'Kigali City', 'Nyarugenge', 'Kigali', 'fatima.munyaneza@example.com', 788567890),
+    -> (6, 'Patrick', 'Ndagijimana', 'Male', 'Northern', 'Gakenke', 'Kivuruga', 'Mbuye', 'patrick.ndagijimana@example.com', 788678901),
+    -> (7, 'Chantal', 'Twagirayezu', 'Female', 'Eastern', 'Ngoma', 'Ngoma', 'Mbuye', 'chantal.twagirayezu@example.com', 788789012),
+    -> (8, 'David', 'Gasana', 'Male', 'Western', 'Nyabihu', 'Kintobo', 'Ruhango', 'david.gasana@example.com', 788890123),
+    -> (9, 'Josiane', 'Mukeshimana', 'Female', 'Southern', 'Nyanza', 'Mugusa', 'Mugusa', 'josiane.mukeshimana@example.com', 788901234),
+    -> (10, 'Samuel', 'Nshimiyimana', 'Male', 'Kigali', 'Gasabo', 'Kacyiru', 'Kigali', 'samuel.nshimiyimana@example.com', 788012345);
+Query OK, 10 rows affected (0.03 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM NGOMA;
++----+----------+--------------+--------+----------+-------------+------------+----------+---------------------------------+-----------+
+| id | F_NAME   | L_NAME       | GENDER | PROVINCE | DISTRICT    | SECTOR     | CELL     | EMAIL                           | PHONE     |
++----+----------+--------------+--------+----------+-------------+------------+----------+---------------------------------+-----------+
+|  1 | Alice    | Mukamana     | Female | Northern | Rulindo     | Nyarutovu  | Munyinya | alice.mukamana@example.com      | 788123456 |
+|  2 | Jean     | Nyampinga    | Male   | Eastern  | Kayonza     | Kibali     | Kibungo  | jean.nyampinga@example.com      | 788234567 |
+|  3 | Claudine | Habimana     | Female | Western  | Rubavu      | Gisenyi    | Nyundo   | claudine.habimana@example.com   | 788345678 |
+|  4 | Eric     | Niyonzima    | Male   | Southern | Huye        | Tumba      | Rukira   | eric.niyonzima@example.com      | 788456789 |
+|  5 | Fatima   | Munyaneza    | Female | Kigali   | Kigali City | Nyarugenge | Kigali   | fatima.munyaneza@example.com    | 788567890 |
+|  6 | Patrick  | Ndagijimana  | Male   | Northern | Gakenke     | Kivuruga   | Mbuye    | patrick.ndagijimana@example.com | 788678901 |
+|  7 | Chantal  | Twagirayezu  | Female | Eastern  | Ngoma       | Ngoma      | Mbuye    | chantal.twagirayezu@example.com | 788789012 |
+|  8 | David    | Gasana       | Male   | Western  | Nyabihu     | Kintobo    | Ruhango  | david.gasana@example.com        | 788890123 |
+|  9 | Josiane  | Mukeshimana  | Female | Southern | Nyanza      | Mugusa     | Mugusa   | josiane.mukeshimana@example.com | 788901234 |
+| 10 | Samuel   | Nshimiyimana | Male   | Kigali   | Gasabo      | Kacyiru    | Kigali   | samuel.nshimiyimana@example.com | 788012345 |
++----+----------+--------------+--------+----------+-------------+------------+----------+---------------------------------+-----------+
+10 rows in set (0.00 sec)
+
+mysql>  SELECT F_NAME , PROVINCE , EMAIL FROM NGOMA WHERE PROVINCE = "north";
+Empty set (0.00 sec)
+
+mysql>  SELECT F_NAME , PROVINCE , EMAIL FROM NGOMA WHERE PROVINCE = "northERN";
++---------+----------+---------------------------------+
+| F_NAME  | PROVINCE | EMAIL                           |
++---------+----------+---------------------------------+
+| Alice   | Northern | alice.mukamana@example.com      |
+| Patrick | Northern | patrick.ndagijimana@example.com |
++---------+----------+---------------------------------+
+2 rows in set (0.00 sec)
+
+mysql>
+mysql> UPDATE NGOMA
+    -> SET EMAIL = 'alice.kagame@newdomain.com', PHONE = 788654321
+    -> WHERE id = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> DELETE FROM NGOMA WHERE id = 1;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT * FROM NGOMA;
++----+----------+--------------+--------+----------+-------------+------------+---------+---------------------------------+-----------+
+| id | F_NAME   | L_NAME       | GENDER | PROVINCE | DISTRICT    | SECTOR     | CELL    | EMAIL                           | PHONE     |
++----+----------+--------------+--------+----------+-------------+------------+---------+---------------------------------+-----------+
+|  2 | Jean     | Nyampinga    | Male   | Eastern  | Kayonza     | Kibali     | Kibungo | jean.nyampinga@example.com      | 788234567 |
+|  3 | Claudine | Habimana     | Female | Western  | Rubavu      | Gisenyi    | Nyundo  | claudine.habimana@example.com   | 788345678 |
+|  4 | Eric     | Niyonzima    | Male   | Southern | Huye        | Tumba      | Rukira  | eric.niyonzima@example.com      | 788456789 |
+|  5 | Fatima   | Munyaneza    | Female | Kigali   | Kigali City | Nyarugenge | Kigali  | fatima.munyaneza@example.com    | 788567890 |
+|  6 | Patrick  | Ndagijimana  | Male   | Northern | Gakenke     | Kivuruga   | Mbuye   | patrick.ndagijimana@example.com | 788678901 |
+|  7 | Chantal  | Twagirayezu  | Female | Eastern  | Ngoma       | Ngoma      | Mbuye   | chantal.twagirayezu@example.com | 788789012 |
+|  8 | David    | Gasana       | Male   | Western  | Nyabihu     | Kintobo    | Ruhango | david.gasana@example.com        | 788890123 |
+|  9 | Josiane  | Mukeshimana  | Female | Southern | Nyanza      | Mugusa     | Mugusa  | josiane.mukeshimana@example.com | 788901234 |
+| 10 | Samuel   | Nshimiyimana | Male   | Kigali   | Gasabo      | Kacyiru    | Kigali  | samuel.nshimiyimana@example.com | 788012345 |
++----+----------+--------------+--------+----------+-------------+------------+---------+---------------------------------+-----------+
+9 rows in set (0.00 sec)
